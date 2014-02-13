@@ -121,7 +121,7 @@ imatplot = function(data, metadata = rownames(data), grouping = seq(nrow(data)),
                      list( GROUPING  = sapply(grouping, function(x) which(ug==x) - 1, USE.NAMES = FALSE),
                            GROUPS    = sapply(ug, function(x) which(grouping==x) - 1, USE.NAMES = FALSE),
                            METADATA  = metadata,
-                           PALETTE   = palette,
+                           PALETTE   = rep(palette, length.out = max(sapply(GROUPS, length))) ,
                            LINEWIDTH = hlwd,
                            OPACITY   = opacity),
                      toJSON, collapse = "")
