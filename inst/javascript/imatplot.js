@@ -51,7 +51,6 @@ function highlightLines(id){
     highlightLine(ids[i], !selected[ids[i]], palette[i]);
     selected[ids[i]] = !selected[ids[i]];
   }
-  console.log(id);
 }
 
 function highlightLine(id, on, color) {
@@ -87,19 +86,5 @@ function highlightLine(id, on, color) {
    
   parent.appendChild(line);
   
-  /*
-  // highlight depending on current state
-  line.setAttribute("stroke-width", selected[i] ? attributes[i][0]: 3.0);
-  line.setAttribute("stroke-opacity", selected[i] ? attributes[i][1]: 0.5);
-  line.setAttribute("stroke", selected[i] ? attributes[i][2]: col);
-  
-  // toggle on/off
-  selected[i] = !selected[i];
- 
-  // this code affects the data hold in the lines array
-  // move to the front
-  //gline = document.getElementById("plot_01.xyplot.lines.group." + id +".panline.1.1.1");
-  //gline.parentNode.appendChild(gline);
-  */
   return(true);
 }
