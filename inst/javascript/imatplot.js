@@ -6,11 +6,11 @@ var metadata = @METADATA@; // the first line contains column names
 
 var palette = @PALETTE@;
 
-var metanames = Object.getOwnPropertyNames(metadata);
-
 var width = @LINEWIDTH@;
 
 var opacity = @OPACITY@;
+
+var metanames = Object.getOwnPropertyNames(metadata);
 
 // initialization code
 var lines = document.getElementsByClassName("matplot.line");
