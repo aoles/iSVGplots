@@ -127,7 +127,7 @@ imatplot = function(data, metadata = rownames(data), grouping = seq(nrow(data)),
                      toJSON, collapse = "")
     )
     
-    addECMAScripts(doc, file.path(outdir, "imatplot.js"))
+    addECMAScripts(doc, file.path(outdir, "imatplot.js"), insertJS = TRUE)
     #
     # SAVE the result
     #
