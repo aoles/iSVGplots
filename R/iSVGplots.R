@@ -2,7 +2,7 @@ drawMetadataTable = function(names){
   names = paste(names, " ", sep = ":")
   
   # lineheight in inches
-  lh = #strheight("", units = "in") * 1.5
+  # lh = strheight("", units = "in") * 1.5
   lh = strwidth("a", units = "in") * 1.5 #dirty temporary fix 
     
   # calculate plotting region coordinates in inches
