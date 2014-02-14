@@ -116,9 +116,10 @@ imatplot = function(data, metadata = rownames(data), grouping = seq(nrow(data)),
     #
     ug = unique(grouping)
     groups = sapply(ug, function(x) which(grouping==x) - 1, USE.NAMES = FALSE)
-    #dir = tempfile("")
+    dir = tempfile("")
+    filename = "imatplot.js"
     
-    copySubstitute(src = system.file("javascript", "imatplot.js", package = "iSVGplots"), dest = outdir, recursive = TRUE,
+    copySubstitute(src = system.file("javascript", filename, package = "iSVGplots"), dest = dir, recursive = TRUE,
                    symbolValues = sapply(
                      list( GROUPING  = sapply(grouping, function(x) which(ug==x) - 1, USE.NAMES = FALSE),
                            GROUPS    = groups,
@@ -126,17 +127,13 @@ imatplot = function(data, metadata = rownames(data), grouping = seq(nrow(data)),
                            PALETTE   = rep(palette, length.out = max(sapply(groups, length))) ,
                            LINEWIDTH = hlwd,
                            OPACITY   = opacity),
-                     toJSON, collapse = "")
+                     toJSON, collapse = "", asIs = FALSE) # fix this for scalar values
     )
     
-#     script = I(paste(readLines(file.path(dir, "imatplot.js")), collapse = ""))
-#     addECMAScripts(doc, script)
+    addECMAScripts(doc, file.path(dir, filename), insert = TRUE)
     
-    addECMAScripts(doc, file.path(outdir, "imatplot.js"))
-    #
     # SAVE the result
-    #
-    writeLines(saveXML(doc), file) # get SVG with line breaks
+    writeLines(saveXML(doc), file.path(outdir, file)) # get SVG with line breaks
   }
   invisible()
 }
