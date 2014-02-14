@@ -116,6 +116,7 @@ imatplot = function(data, metadata = rownames(data), grouping = seq(nrow(data)),
     #
     ug = unique(grouping)
     groups = sapply(ug, function(x) which(grouping==x) - 1, USE.NAMES = FALSE)
+    #dir = tempfile("")
     
     copySubstitute(src = system.file("javascript", "imatplot.js", package = "iSVGplots"), dest = outdir, recursive = TRUE,
                    symbolValues = sapply(
@@ -128,7 +129,10 @@ imatplot = function(data, metadata = rownames(data), grouping = seq(nrow(data)),
                      toJSON, collapse = "")
     )
     
-    addECMAScripts(doc, file.path(outdir, "imatplot.js"), insertJS = TRUE)
+#     script = I(paste(readLines(file.path(dir, "imatplot.js")), collapse = ""))
+#     addECMAScripts(doc, script)
+    
+    addECMAScripts(doc, file.path(outdir, "imatplot.js"))
     #
     # SAVE the result
     #
