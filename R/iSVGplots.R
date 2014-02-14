@@ -116,13 +116,14 @@ imatplot = function(data, metadata = rownames(data), grouping = seq(nrow(data)),
     # process javascript file
     #
     ug = unique(grouping)
+    groups = sapply(ug, function(x) which(grouping==x) - 1, USE.NAMES = FALSE)
     
     copySubstitute(src = system.file("javascript", "imatplot.js", package = "iSVGplots"), dest = outdir, recursive = TRUE,
                    symbolValues = sapply(
                      list( GROUPING  = sapply(grouping, function(x) which(ug==x) - 1, USE.NAMES = FALSE),
-                           GROUPS    = sapply(ug, function(x) which(grouping==x) - 1, USE.NAMES = FALSE),
+                           GROUPS    = groups,
                            METADATA  = metadata,
-                           PALETTE   = rep(palette, length.out = max(sapply(GROUPS, length))) ,
+                           PALETTE   = rep(palette, length.out = max(sapply(groups, length))) ,
                            LINEWIDTH = hlwd,
                            OPACITY   = opacity),
                      toJSON, collapse = "")
